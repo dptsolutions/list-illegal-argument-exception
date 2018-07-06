@@ -28,7 +28,7 @@ object Deps {
             .build()
 }
 
-fun <T: Any> Moshi.toJson(obj: T): String {
+inline fun <reified T: Any> Moshi.toJson(obj: T): String {
     val adapter = this.adapter<T>(obj::class.java)
     return adapter.toJson(obj)
 }
