@@ -4,12 +4,19 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 fun main(args: Array<String>) {
     val myModelList: List<MyModel> = listOf(
-            MyModel(1.0, 1.0),
-            MyModel(2.0, 2.0)
+            MyModel("ListModel1"),
+            MyModel("ListModel2")
     )
 
+    val myModel = MyModel("NotListModel")
+
+    serialize(myModel)
+    serialize(myModelList)
+}
+
+fun serialize(source: Any) {
     try {
-        println(Deps.moshi.toJson(myModelList))
+        println(Deps.moshi.toJson(source))
     } catch (e: IllegalArgumentException) {
         e.printStackTrace()
     }
@@ -27,4 +34,4 @@ fun <T: Any> Moshi.toJson(obj: T): String {
 }
 
 @JsonClass(generateAdapter = true)
-data class MyModel(val a : Double, val b : Double)
+data class MyModel(val str : String)
