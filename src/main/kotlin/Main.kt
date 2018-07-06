@@ -29,7 +29,7 @@ object Deps {
 }
 
 inline fun <reified T: Any> Moshi.toJson(obj: T): String {
-    val adapter = this.adapter<T>(obj::class.java)
+    val adapter = this.adapter<T>(T::class.java)
     return adapter.toJson(obj)
 }
 
